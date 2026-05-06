@@ -60,21 +60,23 @@ def create_layout() -> html.Div:
 
 def generate_sinusoid_controls() -> list:
     panels = []
-    # Darker versions of the colors for better contrast on light background
-    colors = ["#d73a49", "#005cc5", "#6f42c1", "#24292f", "#22863a"]
+    # High-contrast colors for light background: Deep Red, Deep Blue, Deep Purple, Dark Grey, Deep Green
+    border_colors = ["#d73a49", "#005cc5", "#6f42c1", "#24292f", "#22863a"]
+    # Even darker versions for text/headers to ensure visibility
+    text_colors = ["#8b0000", "#00008b", "#4b0082", "#000000", "#006400"]
     for i in range(5):
         panels.append(
             html.Div(
-                style={"border": f"2px solid {colors[i]}", "padding": "15px", "borderRadius": "8px", "flex": "1", "minWidth": "200px", "backgroundColor": "#fdfdfd"},
+                style={"border": f"3px solid {border_colors[i]}", "padding": "15px", "borderRadius": "8px", "flex": "1", "minWidth": "200px", "backgroundColor": "#ffffff", "boxShadow": "2px 2px 5px rgba(0,0,0,0.1)"},
                 children=[
-                    html.H4(f"Sinusoid {i+1}", style={"color": colors[i], "marginTop": "0", "borderBottom": f"1px solid {colors[i]}"}),
-                    dcc.Checklist([{"label": "MIX", "value": "mix"}], ["mix"] if i < 3 else [], id=f"mix-check-{i}", labelStyle={"fontWeight": "bold"}),
-                    dcc.Checklist([{"label": "BPF", "value": "bpf"}], [], id=f"bpf-check-{i}", labelStyle={"fontWeight": "bold"}),
-                    html.Label("Freq (Hz)", style={"fontWeight": "bold", "display": "block", "marginTop": "5px"}),
+                    html.H4(f"Sinusoid {i+1}", style={"color": text_colors[i], "marginTop": "0", "borderBottom": f"2px solid {border_colors[i]}", "fontWeight": "bold", "textAlign": "center"}),
+                    dcc.Checklist([{"label": "MIX", "value": "mix"}], ["mix"] if i < 3 else [], id=f"mix-check-{i}", labelStyle={"fontWeight": "bold", "color": "#000000"}),
+                    dcc.Checklist([{"label": "BPF", "value": "bpf"}], [], id=f"bpf-check-{i}", labelStyle={"fontWeight": "bold", "color": "#000000"}),
+                    html.Label("Freq (Hz)", style={"fontWeight": "bold", "display": "block", "marginTop": "5px", "color": "#000000"}),
                     dcc.Slider(0.1, 100, 1.0, value=(i+1)*2, id=f"f-slider-{i}"),
-                    html.Label("Phase (rad)", style={"fontWeight": "bold", "display": "block", "marginTop": "5px"}),
+                    html.Label("Phase (rad)", style={"fontWeight": "bold", "display": "block", "marginTop": "5px", "color": "#000000"}),
                     dcc.Slider(-6.28, 6.28, 0.1, value=0.0, id=f"phi-slider-{i}"),
-                    html.Label("Amp", style={"fontWeight": "bold", "display": "block", "marginTop": "5px"}),
+                    html.Label("Amp", style={"fontWeight": "bold", "display": "block", "marginTop": "5px", "color": "#000000"}),
                     dcc.Slider(0, 2.0, 0.1, value=1.0, id=f"a-slider-{i}")
                 ]
             )
