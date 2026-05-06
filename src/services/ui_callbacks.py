@@ -6,19 +6,19 @@ import numpy as np
 from .ui_plots import create_signals_plot, create_pca_plot, create_tsne_plot, create_fft_plot
 from .data_generator import SignalGenerator
 
-COLORS_HEX = ["#ff7b72", "#79c0ff", "#d2a8ff", "#a5d6ff"]
+COLORS_HEX = ["#ff7b72", "#79c0ff", "#d2a8ff", "#a5d6ff", "#aff5b4"]
 
 def generate_update_content(tab, fs, n_cyc, display, noise_type, flt_type, 
-                       mix0, mix1, mix2, mix3, 
-                       f0, f1, f2, f3, 
-                       p0, p1, p2, p3, 
-                       a0, a1, a2, a3):
+                       mix0, mix1, mix2, mix3, mix4,
+                       f0, f1, f2, f3, f4,
+                       p0, p1, p2, p3, p4,
+                       a0, a1, a2, a3, a4):
     # Generate signals
-    duration = n_cyc / max(0.1, min(f0, f1, f2, f3)) # approximation
-    freqs = [f0, f1, f2, f3]
-    phis = [p0, p1, p2, p3]
-    amps = [a0, a1, a2, a3]
-    mixes = [mix0, mix1, mix2, mix3]
+    duration = n_cyc / max(0.1, min(f0, f1, f2, f3, f4)) # approximation
+    freqs = [f0, f1, f2, f3, f4]
+    phis = [p0, p1, p2, p3, p4]
+    amps = [a0, a1, a2, a3, a4]
+    mixes = [mix0, mix1, mix2, mix3, mix4]
     
     try:
         gen = SignalGenerator(frequencies=[f for i, f in enumerate(freqs) if "mix" in (mixes[i] or [])],
@@ -32,7 +32,7 @@ def generate_update_content(tab, fs, n_cyc, display, noise_type, flt_type,
     labels = []
     t = np.linspace(0, duration, int(fs*duration))
     
-    for i in range(4):
+    for i in range(5):
         if mixes[i] and "mix" in mixes[i]:
             # clean
             _, clean, _ = gen.generate_clean(freqs[i], amps[i], phis[i])
@@ -92,18 +92,18 @@ def register_callbacks(app):
         Input("display-mode", "value"),
         Input("noise-dropdown", "value"),
         Input("filter-dropdown", "value"),
-        [Input(f"mix-check-{i}", "value") for i in range(4)],
-        [Input(f"f-slider-{i}", "value") for i in range(4)],
-        [Input(f"phi-slider-{i}", "value") for i in range(4)],
-        [Input(f"a-slider-{i}", "value") for i in range(4)]
+        [Input(f"mix-check-{i}", "value") for i in range(5)],
+        [Input(f"f-slider-{i}", "value") for i in range(5)],
+        [Input(f"phi-slider-{i}", "value") for i in range(5)],
+        [Input(f"a-slider-{i}", "value") for i in range(5)]
     )
     def update_content(tab, fs, n_cyc, display, noise_type, flt_type, 
-                       mix0, mix1, mix2, mix3, 
-                       f0, f1, f2, f3, 
-                       p0, p1, p2, p3, 
-                       a0, a1, a2, a3):
+                       mix0, mix1, mix2, mix3, mix4,
+                       f0, f1, f2, f3, f4,
+                       p0, p1, p2, p3, p4,
+                       a0, a1, a2, a3, a4):
         return generate_update_content(tab, fs, n_cyc, display, noise_type, flt_type, 
-                       mix0, mix1, mix2, mix3, 
-                       f0, f1, f2, f3, 
-                       p0, p1, p2, p3, 
-                       a0, a1, a2, a3)
+                       mix0, mix1, mix2, mix3, mix4,
+                       f0, f1, f2, f3, f4,
+                       p0, p1, p2, p3, p4,
+                       a0, a1, a2, a3, a4)

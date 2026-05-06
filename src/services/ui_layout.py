@@ -60,19 +60,19 @@ def create_layout() -> html.Div:
 
 def generate_sinusoid_controls() -> list:
     panels = []
-    colors = ["#ff7b72", "#79c0ff", "#d2a8ff", "#a5d6ff"]
-    for i in range(4):
+    colors = ["#ff7b72", "#79c0ff", "#d2a8ff", "#a5d6ff", "#aff5b4"]
+    for i in range(5):
         panels.append(
             html.Div(
                 style={"border": f"2px solid {colors[i]}", "padding": "10px", "borderRadius": "5px", "flex": "1"},
                 children=[
                     html.H4(f"Sinusoid {i+1}", style={"color": colors[i]}),
-                    dcc.Checklist([{"label": "MIX", "value": "mix"}], ["mix"] if i < 2 else [], id=f"mix-check-{i}"),
+                    dcc.Checklist([{"label": "MIX", "value": "mix"}], ["mix"] if i < 3 else [], id=f"mix-check-{i}"),
                     dcc.Checklist([{"label": "BPF", "value": "bpf"}], [], id=f"bpf-check-{i}"),
                     html.Label("Freq (Hz)"),
-                    dcc.Slider(0.1, 100, 1.0, value=(i+1)*5, id=f"f-slider-{i}"),
+                    dcc.Slider(0.1, 100, 1.0, value=(i+1)*2, id=f"f-slider-{i}"),
                     html.Label("Phase (rad)"),
-                    dcc.Slider(0, 6.28, 0.1, value=0.0, id=f"phi-slider-{i}"),
+                    dcc.Slider(-6.28, 6.28, 0.1, value=0.0, id=f"phi-slider-{i}"),
                     html.Label("Amp"),
                     dcc.Slider(0, 2.0, 0.1, value=1.0, id=f"a-slider-{i}")
                 ]
