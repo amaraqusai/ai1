@@ -152,6 +152,6 @@ uv run ruff check .
 ---
 
 ## 7. Credits & License
-Developed by **Saed Abdalgani**.
+Developed by **qusai amara**.
 Licensed under the **MIT License**.
 See `LICENSE` file for details.
