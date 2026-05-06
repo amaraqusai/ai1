@@ -5,7 +5,7 @@
 |---------------|--------------------------------------------|
 | Version       | 1.20                                       |
 | Status        | Approved                                   |
-| Author        | Saed Abdalgani                             |
+| Author        | qusai amara                                |
 | Date          | 2026-04-28                                 |
 | Package       | `freq_extractor`                           |
 

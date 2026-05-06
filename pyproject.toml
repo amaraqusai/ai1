@@ -3,7 +3,7 @@ name = "freq-extractor"
 version = "1.0.0"
 description = "HW1 - Signal Frequency Extraction using Neural Networks"
 authors = [
-    {name = "Saed Abdalgani", email = "saed.n.nmr@gmail.com"}
+    {name = "qusai amara", email = "saed.n.nmr@gmail.com"}
 ]
 dependencies = [
     "torch>=2.2.0",
