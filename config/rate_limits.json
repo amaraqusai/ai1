@@ -1,0 +1,19 @@
+{
+  "services": {
+    "default": {
+      "calls_per_minute": 600,
+      "max_retries": 3,
+      "timeout_seconds": 10
+    },
+    "file_io": {
+      "calls_per_minute": 1200,
+      "max_retries": 5,
+      "timeout_seconds": 5
+    },
+    "checkpoint": {
+      "calls_per_minute": 60,
+      "max_retries": 3,
+      "timeout_seconds": 30
+    }
+  }
+}

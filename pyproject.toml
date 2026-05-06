@@ -1,0 +1,40 @@
+[project]
+name = "freq-extractor"
+version = "1.0.0"
+description = "HW1 - Signal Frequency Extraction using Neural Networks"
+authors = [
+    {name = "Saed Abdalgani", email = "saed.n.nmr@gmail.com"}
+]
+dependencies = [
+    "torch>=2.2.0",
+    "numpy>=1.26.0",
+    "matplotlib>=3.8.0",
+    "scipy>=1.12.0",
+    "plotly>=5.20.0",
+    "dash>=2.16.0",
+    "scikit-learn>=1.4.0",
+]
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.4.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = []
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-fail-under=85"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["src/main.py"]
